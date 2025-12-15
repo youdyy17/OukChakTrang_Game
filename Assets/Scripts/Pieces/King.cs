@@ -3,8 +3,6 @@ using UnityEngine.UI;
 
 public class King : BasePiece
 {
-    private Rook mLeftRook = null;
-    private Rook mRightRook = null;
 
     public override void Setup(Color newTeamColor, Color32 newSpriteColor, PieceManager newPieceManager)
     {
@@ -37,76 +35,40 @@ public class King : BasePiece
         // Normal pathing
         base.CheckPathing();
 
-        // Right
-        mRightRook = GetRook(1, 3);
-
-        // Left
-        mLeftRook = GetRook(-1, 4);
-    }
-
-    protected override void Move()
-    {
-        // Base move
-        base.Move();
-
-        // Left rook
-        if (CanCastle(mLeftRook))
-            mLeftRook.Castle();
-
-        // Right rook
-        if (CanCastle(mRightRook))
-            mRightRook.Castle();
-    }
-
-    private bool CanCastle(Rook rook)
-    {
-        // For rook
-        if (rook == null)
-            return false;
-
-        // Do the cells match?
-        if (rook.mCastleTriggerCell != mCurrentCell)
-            return false;
-
-        // Check if same team, and hasn't moved
-        if (rook.mColor != mColor || !rook.mIsFirstMove)
-            return false;
-
-        return true;
-    }
-
-    private Rook GetRook(int direction, int count)
-    {
-        // Has the king moved?
-        if (!mIsFirstMove)
-            return null;
-
-        // Numbers and stuff
-        int currentX = mCurrentCell.mBoardPosition.x;
-        int currentY = mCurrentCell.mBoardPosition.y;
-
-        // Go through the cells
-        for (int i = 1; i < count; i++)
+        // Debug: show cell states for one-row forward (by color) and diagonals
         {
-            int offsetX = currentX + (i * direction);
-            CellState cellState = mCurrentCell.mBoard.ValidateCell(offsetX, currentY, this);
+            int cx = mCurrentCell.mBoardPosition.x;
+            int cy = mCurrentCell.mBoardPosition.y;
+            int forward = (mColor == Color.white) ? 1 : -1;
 
-            if (cellState != CellState.Free)
-                return null;
+            // One-row forward and diagonals along forward direction
+            (int x, int y)[] normals = new (int, int)[] { (cx, cy + forward), (cx - 1, cy + forward), (cx + 1, cy + forward) };
+            foreach (var (tx, ty) in normals)
+            {
+                CellState st = mCurrentCell.mBoard.ValidateCell(tx, ty, this);
+            }
         }
 
-        // Try and get rook
-        Cell rookCell = mCurrentCell.mBoard.mAllCells[currentX + (count * direction), currentY];
-        Rook rook = null;
 
-        // Check for cast
-        if (rookCell.mCurrentPiece is Rook)
-            rook = (Rook)rookCell.mCurrentPiece;
+        // Special first move addition: knight-like forward jump (x±2, y+forward)
+        // Example (white): from (4,1) add (2,2) and (6,2) on first move
+        // Example (black): from (4,6) add (2,5) and (6,5) on first move
+        if (mIsFirstMove)
+        {
+            int currentX = mCurrentCell.mBoardPosition.x;
+            int currentY = mCurrentCell.mBoardPosition.y;
+            int forward = (mColor == Color.white) ? 1 : -1;
 
-        // Add target cell to highlighed cells
-        if (rook != null)
-            mHighlightedCells.Add(rook.mCastleTriggerCell);
-
-        return rook;
+            (int x, int y)[] specials = new (int, int)[] { (currentX - 2, currentY + forward), (currentX + 2, currentY + forward) };
+            foreach (var (tx, ty) in specials)
+            {
+                CellState cellState = mCurrentCell.mBoard.ValidateCell(tx, ty, this);
+                Debug.Log($"King first-move special target ({tx},{ty}) state: {cellState}");
+                if (cellState == CellState.Free)
+                {
+                    mHighlightedCells.Add(mCurrentCell.mBoard.mAllCells[tx, ty]);
+                }
+            }
+        }
     }
 }

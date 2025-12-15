@@ -46,15 +46,11 @@ public class Queen : BasePiece
         int currentY = mCurrentCell.mBoardPosition.y;
 
         // In this project, forward direction uses mMovement.z for +/- along Y.
-        // Only allow forward (1 or 2) on the very first move.
+        // Only allow forward to the second square on the very first move,
+        // regardless of whether the first square is blocked.
         if (mIsFirstMove)
         {
-            // First ensure the immediate forward square is free
-            if (MatchesState(currentX, currentY + mMovement.z, CellState.Free))
-            {
-                // If the next square is also free, allow moving two forward
-                MatchesState(currentX, currentY + (mMovement.z * 2), CellState.Free);
-            }
+            MatchesState(currentX, currentY + (mMovement.z * 2), CellState.Free);
         }
     }
 }
