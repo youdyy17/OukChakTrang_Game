@@ -8,8 +8,8 @@ public class Pawn : BasePiece
         // Base setup
         base.Setup(newTeamColor, newSpriteColor, newPieceManager);
 
-        // Pawn Stuff
-        mMovement = mColor == Color.white ? new Vector3Int(0, 0, 1) : new Vector3Int(0, -1, -1);
+        // Pawn movement: y controls forward step, z controls diagonal direction/sign
+        mMovement = mColor == Color.white ? new Vector3Int(0, 1, 1) : new Vector3Int(0, -1, -1);
         Sprite[] sprites = Resources.LoadAll<Sprite>("Trey 1");
 
         foreach (Sprite s in sprites)
