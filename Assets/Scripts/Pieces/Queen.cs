@@ -8,8 +8,9 @@ public class Queen : BasePiece
         // Base setup
         base.Setup(newTeamColor, newSpriteColor, newPieceManager);
 
-        // Queen movement direction aligns with team color
-        mMovement = mColor == Color.white ? new Vector3Int(0, 0, 1) : new Vector3Int(0, -1, -1);
+        // Queen movement ranges (horizontal, vertical, diagonal)
+        // Use positive magnitudes; direction is handled in BasePiece
+        mMovement = new Vector3Int(1, 0, 1);
         Sprite[] sprites = Resources.LoadAll<Sprite>("W");
 
         foreach (Sprite s in sprites)
@@ -45,12 +46,22 @@ public class Queen : BasePiece
         int currentX = mCurrentCell.mBoardPosition.x;
         int currentY = mCurrentCell.mBoardPosition.y;
 
-        // In this project, forward direction uses mMovement.z for +/- along Y.
-        // Only allow forward to the second square on the very first move,
-        // regardless of whether the first square is blocked.
+        // Only allow a special forward two-square move on the very first move,
+        // regardless of whether the first square is blocked. Direction depends on color.
+        // Also block ALL forward vertical squares on the first move except the 2-square.
         if (mIsFirstMove)
         {
-            MatchesState(currentX, currentY + (mMovement.z * 2), CellState.Free);
+            int forward = (mColor == Color.white) ? 1 : -1;
+
+            // Remove any forward vertical moves added by base pathing
+            mHighlightedCells.RemoveAll(cell =>
+                cell.mBoardPosition.x == currentX &&
+                ((forward == 1 && cell.mBoardPosition.y > currentY) ||
+                 (forward == -1 && cell.mBoardPosition.y < currentY))
+            );
+
+            // Re-add only the 2-square forward if it's free
+            MatchesState(currentX, currentY + (forward * 2), CellState.Free);
         }
     }
 }
