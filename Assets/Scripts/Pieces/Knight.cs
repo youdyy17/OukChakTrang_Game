@@ -9,8 +9,16 @@ public class Knight : BasePiece
         base.Setup(newTeamColor, newSpriteColor, newPieceManager);
 
         // Knight stuff
-        GetComponent<Image>().sprite = Resources.Load<Sprite>("T_Knight");
-    }
+        Sprite[] sprites = Resources.LoadAll<Sprite>("W");
+
+        foreach (Sprite s in sprites)
+        {
+            if (s.name == "White_Knight")
+            {
+                GetComponent<Image>().sprite = s;
+                break;
+            }
+        }    }
 
     private void CreateCellPath(int flipper)
     {

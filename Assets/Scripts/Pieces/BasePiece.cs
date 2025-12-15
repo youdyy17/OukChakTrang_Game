@@ -85,7 +85,7 @@ public abstract class BasePiece : EventTrigger
     }
 
     #region Movement
-    private void CreateCellPath(int xDirection, int yDirection, int movement)
+    protected void CreateCellPath(int xDirection, int yDirection, int movement)
     {
         // Target position
         int currentX = mCurrentCell.mBoardPosition.x;

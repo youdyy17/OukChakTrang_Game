@@ -13,7 +13,13 @@ public class PieceManager : MonoBehaviour
     private List<BasePiece> mBlackPieces = null;
     private List<BasePiece> mPromotedPieces = new List<BasePiece>();
 
-    private string[] mPieceOrder = new string[16]
+    private string[] wPieceOrder = new string[16]
+    {
+        "P", "P", "P", "P", "P", "P", "P", "P",
+        "R", "KN", "B", "K", "Q", "B", "KN", "R"
+    };
+
+    private string[] bPieceOrder = new string[16]
     {
         "P", "P", "P", "P", "P", "P", "P", "P",
         "R", "KN", "B", "Q", "K", "B", "KN", "R"
@@ -26,58 +32,71 @@ public class PieceManager : MonoBehaviour
         {"KN", typeof(Knight)},
         {"B",  typeof(Bishop)},
         {"K",  typeof(King)},
-        {"Q",  typeof(Queen)}
+        {"Q",  typeof(Queen)},
+        {"PP", typeof(Treybok)},
+    };
+
+    // 🔹 ADDED: scale per piece type
+    private Dictionary<Type, Vector3> mPieceScales = new Dictionary<Type, Vector3>()
+    {
+        { typeof(Pawn),   new Vector3(0.9f, 0.9f, 1f) },
+        { typeof(Rook),   new Vector3(0.88f, 0.88f, 1f) },
+        { typeof(Knight), new Vector3(0.76f, 1.17f, 1f) },
+        { typeof(Bishop), new Vector3(0.70f, 1.05f, 1f) },
+        { typeof(Queen),  new Vector3(0.53f, 1.11f, 1f) },
+        { typeof(Treybok), new Vector3(0.9f, 0.9f, 1f) },
+        { typeof(King),   new Vector3(0.82f,1.29f,1f) },
     };
 
     public void Setup(Board board)
     {
-        // Create white pieces
-        mWhitePieces = CreatePieces(Color.white, new Color32(80, 124, 159, 255));
+        mWhitePieces = CreatePieces(Color.white, new Color32(255, 255, 255, 255), wPieceOrder);
 
-        // Create place pieces
-        mBlackPieces = CreatePieces(Color.black, new Color32(210, 95, 64, 255));
+        mBlackPieces = CreatePieces(
+            Color.black,
+            new Color32(193, 154, 107, 255),
+            bPieceOrder
+        );
 
-        // Place pieces
-        PlacePieces(1, 0, mWhitePieces, board);
-        PlacePieces(6, 7, mBlackPieces, board);
+        PlacePieces(2, 0, mWhitePieces, board);
+        PlacePieces(5, 7, mBlackPieces, board);
 
-        // White goes first
         SwitchSides(Color.black);
     }
 
-    private List<BasePiece> CreatePieces(Color teamColor, Color32 spriteColor)
+    // 🔹 MODIFIED: added pieceOrder parameter
+    private List<BasePiece> CreatePieces(Color teamColor, Color32 spriteColor, string[] pieceOrder)
     {
         List<BasePiece> newPieces = new List<BasePiece>();
 
-        for (int i = 0; i < mPieceOrder.Length; i++)
+        for (int i = 0; i < pieceOrder.Length; i++)
         {
-            // Get the type
-            string key = mPieceOrder[i];
+            string key = pieceOrder[i];
             Type pieceType = mPieceLibrary[key];
 
-            // Create
             BasePiece newPiece = CreatePiece(pieceType);
             newPieces.Add(newPiece);
 
-            // Setup
             newPiece.Setup(teamColor, spriteColor, this);
         }
 
         return newPieces;
     }
 
+    // 🔹 MODIFIED (scale applied, no other logic touched)
     private BasePiece CreatePiece(Type pieceType)
     {
-        // Create new object
         GameObject newPieceObject = Instantiate(mPiecePrefab);
         newPieceObject.transform.SetParent(transform);
-
-        // Set scale and position
-        newPieceObject.transform.localScale = new Vector3(1, 1, 1);
         newPieceObject.transform.localRotation = Quaternion.identity;
 
-        // Store new piece
         BasePiece newPiece = (BasePiece)newPieceObject.AddComponent(pieceType);
+
+        // Apply scale based on piece type
+        if (mPieceScales.TryGetValue(pieceType, out Vector3 scale))
+            newPieceObject.transform.localScale = scale;
+        else
+            newPieceObject.transform.localScale = Vector3.one;
 
         return newPiece;
     }
@@ -86,10 +105,7 @@ public class PieceManager : MonoBehaviour
     {
         for (int i = 0; i < 8; i++)
         {
-            // Place pawns    
             pieces[i].Place(board.mAllCells[i, pawnRow]);
-
-            // Place royalty
             pieces[i + 8].Place(board.mAllCells[i, royaltyRow]);
         }
     }
@@ -100,66 +116,26 @@ public class PieceManager : MonoBehaviour
             piece.enabled = value;
     }
 
-    /*
-    private void MoveRandomPiece()
-    {
-        BasePiece finalPiece = null;
-
-        while (!finalPiece)
-        {
-            // Get piece
-            int i = UnityEngine.Random.Range(0, mBlackPieces.Count);
-            BasePiece newPiece = mBlackPieces[i];
-
-            // Does this piece have any moves?
-            if (!newPiece.HasMove())
-                continue;
-
-            // Is piece active?
-            if (newPiece.gameObject.activeInHierarchy)
-                finalPiece = newPiece;
-        }
-
-        finalPiece.ComputerMove();
-    }
-    */
-
     public void SwitchSides(Color color)
     {
         if (!mIsKingAlive)
         {
-            // Reset pieces
             ResetPieces();
-
-            // King has risen from the dead
             mIsKingAlive = true;
-
-            // Change color to black, so white can go first again
             color = Color.black;
         }
 
         bool isBlackTurn = color == Color.white ? true : false;
 
-        // Set team interactivity
         SetInteractive(mWhitePieces, !isBlackTurn);
-
-        // Disable this so player can't move pieces
         SetInteractive(mBlackPieces, isBlackTurn);
 
-        // Set promoted interactivity
         foreach (BasePiece piece in mPromotedPieces)
         {
             bool isBlackPiece = piece.mColor != Color.white ? true : false;
             bool isPartOfTeam = isBlackPiece == true ? isBlackTurn : !isBlackTurn;
-
             piece.enabled = isPartOfTeam;
         }
-
-        // ADDED: Move random piece
-        /*
-        if (isBlackTurn)
-            MoveRandomPiece();
-        */
     }
 
     public void ResetPieces()
@@ -181,17 +157,12 @@ public class PieceManager : MonoBehaviour
 
     public void PromotePiece(Pawn pawn, Cell cell, Color teamColor, Color spriteColor)
     {
-        // Kill Pawn
         pawn.Kill();
 
-        // Create
-        BasePiece promotedPiece = CreatePiece(typeof(Queen));
+        BasePiece promotedPiece = CreatePiece(typeof(Treybok));
         promotedPiece.Setup(teamColor, spriteColor, this);
-
-        // Place piece
         promotedPiece.Place(cell);
 
-        // Add
         mPromotedPieces.Add(promotedPiece);
     }
 }
