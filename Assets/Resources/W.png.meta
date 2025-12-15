@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 96742f9965e91f149950ebbf380a8f61
+guid: 4c44745abbe9271478087f1036389e55
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -34,7 +34,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -97,43 +97,106 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Trey 1_0
+      name: White_King
       rect:
         serializedVersion: 2
-        x: 49
-        y: 120
-        width: 233
-        height: 233
+        x: 124
+        y: 15
+        width: 122
+        height: 331
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7f97d3cb36f659b4d9cdd72bae3bc70f
-      internalID: 1036989883
+      spriteID: fdf6e2f9395720947ba8de254af74e02
+      internalID: 1033983663
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Trey 1_1
+      name: White_Queen
       rect:
         serializedVersion: 2
-        x: 342
-        y: 119
-        width: 233
-        height: 234
+        x: 450
+        y: 15
+        width: 102
+        height: 321
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0cbf8bfe6f9a33f4f8e36b160cc2f9e3
-      internalID: -1584366275
+      spriteID: c3816fb1a37fe424c90f3945555a7742
+      internalID: 1800988911
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: White_Bishop
+      rect:
+        serializedVersion: 2
+        x: 730
+        y: 15
+        width: 132
+        height: 302
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cae14f27acb7eb049906e279b78570a9
+      internalID: -1146816320
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: White_Knight
+      rect:
+        serializedVersion: 2
+        x: 1042
+        y: 15
+        width: 152
+        height: 320
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0b80c170f4afc85478faf439703d5e01
+      internalID: -1142164701
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: White_Rook
+      rect:
+        serializedVersion: 2
+        x: 1365
+        y: 15
+        width: 139
+        height: 190
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0d9c946d6807f4d4f933f57aa2a2ba34
+      internalID: -40463321
       vertices: []
       indices: 
       edges: []
@@ -149,8 +212,11 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Trey 1_0: 1036989883
-      Trey 1_1: -1584366275
+      White_Bishop: -1146816320
+      White_King: 1033983663
+      White_Knight: -1142164701
+      White_Queen: 1800988911
+      White_Rook: -40463321
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

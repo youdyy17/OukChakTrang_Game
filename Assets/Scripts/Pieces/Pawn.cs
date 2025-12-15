@@ -9,8 +9,17 @@ public class Pawn : BasePiece
         base.Setup(newTeamColor, newSpriteColor, newPieceManager);
 
         // Pawn Stuff
-        mMovement = mColor == Color.white ? new Vector3Int(0, 1, 1) : new Vector3Int(0, -1, -1);
-        GetComponent<Image>().sprite = Resources.Load<Sprite>("T_Pawn");
+        mMovement = mColor == Color.white ? new Vector3Int(0, 0, 1) : new Vector3Int(0, -1, -1);
+        Sprite[] sprites = Resources.LoadAll<Sprite>("Trey 1");
+
+        foreach (Sprite s in sprites)
+        {
+            if (s.name == "Trey 1_0")
+            {
+                GetComponent<Image>().sprite = s;
+                break;
+            }
+        }
     }
 
     protected override void Move()

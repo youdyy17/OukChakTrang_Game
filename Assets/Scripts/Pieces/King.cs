@@ -13,7 +13,16 @@ public class King : BasePiece
 
         // King stuff
         mMovement = new Vector3Int(1, 1, 1);
-        GetComponent<Image>().sprite = Resources.Load<Sprite>("T_King");
+        Sprite[] sprites = Resources.LoadAll<Sprite>("W");
+
+        foreach (Sprite s in sprites)
+        {
+            if (s.name == "White_King")
+            {
+                GetComponent<Image>().sprite = s;
+                break;
+            }
+        }
     }
 
     public override void Kill()

@@ -14,7 +14,18 @@ public class Rook : BasePiece
 
         // Rook stuff
         mMovement = new Vector3Int(7, 7, 0);
-        GetComponent<Image>().sprite = Resources.Load<Sprite>("T_Rook");
+        
+        Sprite[] sprites = Resources.LoadAll<Sprite>("W");
+
+        foreach (Sprite s in sprites)
+        {
+            if (s.name == "White_Rook")
+            {
+                GetComponent<Image>().sprite = s;
+                break;
+            }
+        }
+
     }
 
     public override void Place(Cell newCell)

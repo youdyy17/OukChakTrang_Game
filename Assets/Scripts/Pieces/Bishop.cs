@@ -9,7 +9,17 @@ public class Bishop : BasePiece
         base.Setup(newTeamColor, newSpriteColor, newPieceManager);
 
         // Bishop stuff
-        mMovement = new Vector3Int(0, 0, 7);
-        GetComponent<Image>().sprite = Resources.Load<Sprite>("T_Bishop");
+         mMovement = mColor == Color.white ? new Vector3Int(0, 0, 1) : new Vector3Int(0, -1, -1);
+        mMovement = new Vector3Int(0, 1, 1);
+        Sprite[] sprites = Resources.LoadAll<Sprite>("W");
+
+        foreach (Sprite s in sprites)
+        {
+            if (s.name == "White_Bishop")
+            {
+                GetComponent<Image>().sprite = s;
+                break;
+            }
+        }
     }
 }

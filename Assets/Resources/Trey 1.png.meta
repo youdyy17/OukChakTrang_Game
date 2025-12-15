@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: af3fd597df39bab4b897143fb710b42d
+guid: 96742f9965e91f149950ebbf380a8f61
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -34,7 +34,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -97,12 +97,33 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Black_piece-removebg-preview_0
+      name: Trey 1_0
       rect:
         serializedVersion: 2
-        x: 3
-        y: 12
-        width: 83
+        x: 49
+        y: 120
+        width: 233
+        height: 233
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7f97d3cb36f659b4d9cdd72bae3bc70f
+      internalID: 1036989883
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Trey 1_1
+      rect:
+        serializedVersion: 2
+        x: 342
+        y: 119
+        width: 233
         height: 234
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -111,92 +132,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 813a1fded91af1a4d928174a604a6b5a
-      internalID: -1407187382
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Black_piece-removebg-preview_1
-      rect:
-        serializedVersion: 2
-        x: 227
-        y: 12
-        width: 70
-        height: 227
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 7684593d6e900f34dab20a8033058f77
-      internalID: -187466057
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Black_piece-removebg-preview_2
-      rect:
-        serializedVersion: 2
-        x: 425
-        y: 12
-        width: 92
-        height: 212
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 84e3c86c3a5560e4badbda0ea0eec4e2
-      internalID: -1150643106
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Black_piece-removebg-preview_3
-      rect:
-        serializedVersion: 2
-        x: 645
-        y: 12
-        width: 108
-        height: 226
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: b630fab52ac714b4c801f1fa5a89378e
-      internalID: 1177810564
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Black_piece-removebg-preview_4
-      rect:
-        serializedVersion: 2
-        x: 874
-        y: 12
-        width: 98
-        height: 133
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 1aa8195dc4ea8e8449b576196816eb07
-      internalID: -174008285
+      spriteID: 0cbf8bfe6f9a33f4f8e36b160cc2f9e3
+      internalID: -1584366275
       vertices: []
       indices: 
       edges: []
@@ -212,11 +149,8 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Black_piece-removebg-preview_0: -1407187382
-      Black_piece-removebg-preview_1: -187466057
-      Black_piece-removebg-preview_2: -1150643106
-      Black_piece-removebg-preview_3: 1177810564
-      Black_piece-removebg-preview_4: -174008285
+      Trey 1_0: 1036989883
+      Trey 1_1: -1584366275
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

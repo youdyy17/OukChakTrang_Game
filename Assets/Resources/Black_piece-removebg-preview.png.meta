@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: ff839e5610f536347b3edca4c451f6e1
+guid: af3fd597df39bab4b897143fb710b42d
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -34,7 +34,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -97,13 +97,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Chess Piece No bg_0
+      name: Black_piece-removebg-preview_0
       rect:
         serializedVersion: 2
-        x: 124
-        y: 15
-        width: 122
-        height: 331
+        x: 3
+        y: 12
+        width: 83
+        height: 234
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -111,20 +111,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5d1d2324ba2a5d144864fe284ec7e62a
-      internalID: -760819366
+      spriteID: 813a1fded91af1a4d928174a604a6b5a
+      internalID: -1407187382
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Chess Piece No bg_1
+      name: Black_piece-removebg-preview_1
       rect:
         serializedVersion: 2
-        x: 450
-        y: 15
-        width: 102
-        height: 321
+        x: 227
+        y: 12
+        width: 70
+        height: 227
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -132,20 +132,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5312cc2d9b148e94b9cab00e369fd9e5
-      internalID: 2127499060
+      spriteID: 7684593d6e900f34dab20a8033058f77
+      internalID: -187466057
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Chess Piece No bg_2
+      name: Black_piece-removebg-preview_2
       rect:
         serializedVersion: 2
-        x: 730
-        y: 15
-        width: 132
-        height: 302
+        x: 425
+        y: 12
+        width: 92
+        height: 212
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -153,20 +153,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 28bc0101707283a4cb163898657f3fe5
-      internalID: 220576727
+      spriteID: 84e3c86c3a5560e4badbda0ea0eec4e2
+      internalID: -1150643106
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Chess Piece No bg_3
+      name: Black_piece-removebg-preview_3
       rect:
         serializedVersion: 2
-        x: 1042
-        y: 15
-        width: 152
-        height: 320
+        x: 645
+        y: 12
+        width: 108
+        height: 226
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -174,20 +174,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 83814f43e543e2649a194660891160e9
-      internalID: 1935490595
+      spriteID: b630fab52ac714b4c801f1fa5a89378e
+      internalID: 1177810564
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Chess Piece No bg_4
+      name: Black_piece-removebg-preview_4
       rect:
         serializedVersion: 2
-        x: 1365
-        y: 15
-        width: 139
-        height: 190
+        x: 874
+        y: 12
+        width: 98
+        height: 133
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -195,8 +195,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4bdcade7dceb10944a40576285221996
-      internalID: 1877649125
+      spriteID: 1aa8195dc4ea8e8449b576196816eb07
+      internalID: -174008285
       vertices: []
       indices: 
       edges: []
@@ -212,11 +212,11 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Chess Piece No bg_0: -760819366
-      Chess Piece No bg_1: 2127499060
-      Chess Piece No bg_2: 220576727
-      Chess Piece No bg_3: 1935490595
-      Chess Piece No bg_4: 1877649125
+      Black_piece-removebg-preview_0: -1407187382
+      Black_piece-removebg-preview_1: -187466057
+      Black_piece-removebg-preview_2: -1150643106
+      Black_piece-removebg-preview_3: 1177810564
+      Black_piece-removebg-preview_4: -174008285
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

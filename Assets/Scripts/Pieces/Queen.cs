@@ -9,7 +9,16 @@ public class Queen : BasePiece
         base.Setup(newTeamColor, newSpriteColor, newPieceManager);
 
         // Queen stuff
-        mMovement = new Vector3Int(7, 7, 7);
-        GetComponent<Image>().sprite = Resources.Load<Sprite>("T_Queen");
+        mMovement = new Vector3Int(0, 0, 1);
+        Sprite[] sprites = Resources.LoadAll<Sprite>("W");
+
+        foreach (Sprite s in sprites)
+        {
+            if (s.name == "White_Queen")
+            {
+                GetComponent<Image>().sprite = s;
+                break;
+            }
+        }
     }
 }
