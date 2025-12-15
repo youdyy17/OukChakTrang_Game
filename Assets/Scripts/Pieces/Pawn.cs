@@ -9,7 +9,7 @@ public class Pawn : BasePiece
         base.Setup(newTeamColor, newSpriteColor, newPieceManager);
 
         // Pawn Stuff
-        mMovement = mColor == Color.white ? new Vector3Int(0, 0, 1) : new Vector3Int(0, -1, -1);
+        mMovement = mColor == Color.white ? new Vector3Int(0, 1, 1) : new Vector3Int(0, -1, -1);
         Sprite[] sprites = Resources.LoadAll<Sprite>("Trey 1");
 
         foreach (Sprite s in sprites)
@@ -48,11 +48,12 @@ public class Pawn : BasePiece
         // Target position
         int currentX = mCurrentCell.mBoardPosition.x;
         int currentY = mCurrentCell.mBoardPosition.y;
+        // Promote when entering the last two ranks of the opponent side (rows 6-7 for white, 1-0 for black)
+        bool inPromotionZone = mColor == Color.white
+            ? currentY >= 5
+            : currentY <= 2;
 
-        // Check if pawn has reached the end of the board
-        CellState cellState = mCurrentCell.mBoard.ValidateCell(currentX, currentY + mMovement.y, this);
-
-        if (cellState == CellState.OutOfBounds)
+        if (inPromotionZone)
         {
             Color spriteColor = GetComponent<Image>().color;
             mPieceManager.PromotePiece(this, mCurrentCell, mColor, spriteColor);
@@ -69,14 +70,7 @@ public class Pawn : BasePiece
         MatchesState(currentX - mMovement.z, currentY + mMovement.z, CellState.Enemy);
 
         // Forward
-        if (MatchesState(currentX, currentY + mMovement.y, CellState.Free))
-        {
-            // If the first forward cell is free, and first move, check for next
-            if (mIsFirstMove)
-            {
-                MatchesState(currentX, currentY + (mMovement.y * 2), CellState.Free);
-            }
-        }
+        if (MatchesState(currentX, currentY + mMovement.y, CellState.Free)) ;
 
         // Top right
         MatchesState(currentX + mMovement.z, currentY + mMovement.z, CellState.Enemy);

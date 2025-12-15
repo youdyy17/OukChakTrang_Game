@@ -32,7 +32,8 @@ public class PieceManager : MonoBehaviour
         {"KN", typeof(Knight)},
         {"B",  typeof(Bishop)},
         {"K",  typeof(King)},
-        {"Q",  typeof(Queen)}
+        {"Q",  typeof(Queen)},
+        {"PP", typeof(Treybok)},
     };
 
     // 🔹 ADDED: scale per piece type
@@ -43,6 +44,7 @@ public class PieceManager : MonoBehaviour
         { typeof(Knight), new Vector3(0.76f, 1.17f, 1f) },
         { typeof(Bishop), new Vector3(0.70f, 1.05f, 1f) },
         { typeof(Queen),  new Vector3(0.53f, 1.11f, 1f) },
+        { typeof(Treybok), new Vector3(0.9f, 0.9f, 1f) },
         { typeof(King),   new Vector3(0.82f,1.29f,1f) },
     };
 
@@ -157,7 +159,7 @@ public class PieceManager : MonoBehaviour
     {
         pawn.Kill();
 
-        BasePiece promotedPiece = CreatePiece(typeof(Queen));
+        BasePiece promotedPiece = CreatePiece(typeof(Treybok));
         promotedPiece.Setup(teamColor, spriteColor, this);
         promotedPiece.Place(cell);
 
