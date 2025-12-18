@@ -56,5 +56,5 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "OukChakTrang_Game.sln"
+    "dotnet.defaultSolution": "OukChakTrang_Game.slnx"
 }
