@@ -10,7 +10,7 @@ public class Queen : BasePiece
 
         // Queen movement ranges (horizontal, vertical, diagonal)
         // Use positive magnitudes; direction is handled in BasePiece
-        mMovement = new Vector3Int(1, 0, 1);
+        mMovement = new Vector3Int(0, 0, 1);
         Sprite[] sprites = Resources.LoadAll<Sprite>("W");
 
         foreach (Sprite s in sprites)
